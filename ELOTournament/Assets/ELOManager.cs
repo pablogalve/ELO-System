@@ -9,15 +9,15 @@ public class ELOManager : MonoBehaviour {
 
     int Round;
 
-    float AvgUp = 0;  //Los mejores que tú
-    float AvgDown = 0;  //Los peores que tú
-    float ProbWinUp = 0;  //Probabilidad de ganar a los que te han ganado
-    float ProbWinDown = 0;  //Probabilidad de ganar a los que has ganado
-    float WinELO = 0; //Puntos que ganará
-    float LoseELO = 0; //Puntos que perderá
-    float k; //Constante k. Es el número máximo de puntos que puede ganar/perder un jugador en una partida
-    int userUp = 0; //Los usuarios que hay por delante tuya en el ranking
-    int userDown = 0; //Los usuarios que hay por debajo tuya en el ranking
+    float AvgUp = 0;  //People above yourself
+    float AvgDown = 0;  //People below yourself
+    float ProbWinUp = 0;  //Probability to beat people that have beaten you
+    float ProbWinDown = 0;  //Probability to beat people you have beaten
+    float WinELO = 0; //Score that he will win
+    float LoseELO = 0; //Score that he will lose
+    float k; //Constant k. It is the maximum score that a user can win/lose in a game
+    int userUp = 0; //Users above you in the ranking
+    int userDown = 0; //Users below you in the ranking
 
 
     public float timer;
@@ -85,51 +85,51 @@ public class ELOManager : MonoBehaviour {
         }
 	}
 
-    void CalculateELO()   //Calculamos cuantos puntos ganará y perderá cada jugador
+    void CalculateELO()   //We calculate the score that each user will win/lose
     {
-        Ranking.Sort((p1, p2) => p1.min.CompareTo(p2.min)); //Ordenamos el ranking del que menos ha usado el móvil al que más lo ha usado
+        Ranking.Sort((p1, p2) => p1.min.CompareTo(p2.min)); //We order the rank by less used to more used
         print("-------------------------------------------------------------------------------- Round: " + Round);
 
-        for (int i = 0; i < Ranking.Count; i++)  //.Count cuenta el número de usuarios que hay en "Ranking"
+        for (int i = 0; i < Ranking.Count; i++)  //Counts how many users are in the ranking
         {
-            AvgUp = 0;  //Los mejores que tú
-            AvgDown = 0;  //Los peores que tú
-            ProbWinUp = 0;  //Probabilidad de ganar a los que te han ganado
-            ProbWinDown = 0;  //Probabilidad de ganar a los que has ganado
-            WinELO = 0; //Puntos que ganará
-            LoseELO = 0; //Puntos que perderá
-            k = 5; //Constante k. Es el número máximo de puntos que puede ganar/perder un jugador en una partida
-            userUp = 0; //Los usuarios que hay por delante tuya en el ranking
-            userDown = 0; //Los usuarios que hay por debajo tuya en el ranking
+            AvgUp = 0;  
+            AvgDown = 0;  
+            ProbWinUp = 0;  
+            ProbWinDown = 0;  
+            WinELO = 0; 
+            LoseELO = 0; 
+            k = 5;
+            userUp = 0; 
+            userDown = 0; 
 
-            userUp = i;  //El número de usuarios que hay encima coincide con i
-            userDown = Ranking.Count - i;  //Usuarios totales - Yo
+            userUp = i;  //Number of users above you is the same as "i"
+            userDown = Ranking.Count - i;  //Total users - Me
 
-            if (i != 0)  //Si no es el primero
+            if (i != 0)  //If you are not the first one
             {
-                AvgUp = Ranking[i - 1].ELO;          //AvgUp = El ELO de la persona que hay encima de ti
+                AvgUp = Ranking[i - 1].ELO;          //AvgUp = Average ELO of people above you
                 ProbWinUp = 1 / (1 + Mathf.Pow(10, (AvgUp - Ranking[i].ELO) / 400));
                 LoseELO = k * (0 - ProbWinUp) * userUp;
             }
-            else if(i == 0) //Si eres el primero
+            else if(i == 0) //If you are the first one
             {
                 AvgUp = 0;
                 LoseELO = 0;
             }
-            if (i != Ranking.Count -1 ) //Si no eres el último
+            if (i != Ranking.Count -1 ) //If you are not the last one
             {
-                AvgDown = Ranking[i + 1].ELO;       //La persona que hay debajo de ti
+                AvgDown = Ranking[i + 1].ELO;       //People below you
                 ProbWinDown = 1 / (1 + Mathf.Pow(10, (AvgDown - Ranking[i].ELO) / 400));
                 WinELO = k * (1 - ProbWinDown) * userDown;
             }
-            else if (i == Ranking.Count)  //Si eres el último
+            else if (i == Ranking.Count)  //If you are the last one
             {
                 AvgDown = 0;
                 WinELO = 0;
             }
             
 
-            if (Ranking[i].ELO <= 400) //Si algún usuario tiene muy pocos puntos, le añadimos puntos extras para evitar que lleguen a ser un número negativo
+            if (Ranking[i].ELO <= 400) //If a user has too low score, we add him some extra points to avoid reaching negative score. That creates ELO inflation
             {
                 WinELO += 10;
             }
@@ -149,7 +149,7 @@ public class ELOManager : MonoBehaviour {
         }
     }
 
-    void GiveELO()    //Distribuimos los puntos que hemos calculado en la función CalculateELO()
+    void GiveELO()    //We distribute calculated points among the users
     {
         for(int i = 0; i < Ranking.Count; i++)
         {
@@ -157,7 +157,7 @@ public class ELOManager : MonoBehaviour {
             Ranking[i].ELO += loseELOList[i];
         }
     }
-    void RandomTimes()  //Añadimos tiempo de uso aleatorio para poder hacer las pruebas
+    void RandomTimes()  //We add random time in order to do tests
     {
         for(int i = 0; i<Ranking.Count; i++)
         {
