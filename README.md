@@ -6,4 +6,5 @@ This is a console script that manages a ELO system (the score system used in Che
 It prints on the console all the results. If you need to implement that in a user interface and make it beautiful/user-friendly, just contact me, I can do that easily.
 
 Email: eduinvestor100@gmail.com 
+
 Telegram: eduinvestor
