@@ -25,8 +25,9 @@ public:
 	float getAvgDown(); //Get average ELO of all the users below you
 	float getProbWinUp(); //Get your probabilities of beating users above you
 	float getProbWinDown(); //Get your probabilities of beating users below you
-	void addNewUser(string name); //Add a new user with an ELO of 0
+	void addNewUser(string name, float ELO); //Add a new user with an ELO of 0
 	void calculateScore(); //Calculate the resulting score of a game/day 
+	void printUsers(); 
 };
 
 #endif // !_ELOMANAGER_H
