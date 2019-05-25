@@ -1,10 +1,16 @@
 #include "users.h"
 
 int main() {
+	ELOManager* elo = new ELOManager();
 
-	for (int i = 0; i < 10; i++) {
-		cout << "It works" << endl;
-	}
+	cout << "1";
+
+	elo->addNewUser("Jose", 5);
+	elo->addNewUser("Alberto", 30);
+	cout << "2";
+	elo->printUsers();
+
+	cout << "3";
 	
 
 	return 0;
