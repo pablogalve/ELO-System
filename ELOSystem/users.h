@@ -6,14 +6,17 @@ using namespace std;
 
 #define K 5; //constant number used to calculate ELO variations
 
-struct users {
+struct user {
 	string username;
 	float ELO;
 	float score;
+	user* next;
+	user* previous;
 };
 class ELOManager {
 private:
-	
+	user* first;
+	user* last;
 public:
 	ELOManager(); //Constructor
 	~ELOManager(); //Destructor
@@ -22,7 +25,8 @@ public:
 	float getAvgDown(); //Get average ELO of all the users below you
 	float getProbWinUp(); //Get your probabilities of beating users above you
 	float getProbWinDown(); //Get your probabilities of beating users below you
-	void 
+	void addNewUser(string name); //Add a new user with an ELO of 0
+	void calculateScore(); //Calculate the resulting score of a game/day 
 };
 
 #endif // !_ELOMANAGER_H
