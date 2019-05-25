@@ -26,6 +26,7 @@ float ELOManager::getProbWinDown() {
 
 }
 void ELOManager::addNewUser(string name, float ELO) {
+	
 	user* newUser = new user();
 	user* index;
 
@@ -37,11 +38,13 @@ void ELOManager::addNewUser(string name, float ELO) {
 	else {
 		for (index = first; index->next != nullptr; index = index->next);
 		if (newUser != nullptr) {
+			
 			index->next->username = name;
 			index->next->ELO = ELO;
 			index->next->score = 0;
 			index->next->next = nullptr;
 			index->next->previous = index;
+			
 		}				
 	}
 }

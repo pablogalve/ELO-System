@@ -1,8 +1,6 @@
-﻿  main.cpp
-  users.cpp
-  Generando código...
-  C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\users.cpp(24) : error C4716: 'ELOManager::getProbWinUp': debe devolver un valor
-  C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\users.cpp(21) : error C4716: 'ELOManager::getAvgDown': debe devolver un valor
+﻿  users.cpp
   C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\users.cpp(18) : error C4716: 'ELOManager::getAvgUp': debe devolver un valor
+  C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\users.cpp(21) : error C4716: 'ELOManager::getAvgDown': debe devolver un valor
+  C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\users.cpp(24) : error C4716: 'ELOManager::getProbWinUp': debe devolver un valor
   C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\users.cpp(27) : error C4716: 'ELOManager::getProbWinDown': debe devolver un valor
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(429,5): error MSB6006: "CL.exe" salió con el código 2.
