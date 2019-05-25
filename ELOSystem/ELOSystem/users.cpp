@@ -7,6 +7,8 @@ ELOManager::ELOManager() {
 }
 
 ELOManager::~ELOManager() {
+	delete first;
+	delete last;
 	cout << "List Deleted";
 }
 /*
@@ -33,8 +35,6 @@ void ELOManager::addNewUser(string name, float ELO) {
 	user* newUser = new user();
 	user* index;
 
-	cout << "elo[" << ELO << "]";
-
 	if (first == nullptr) {
 		first = newUser; //To assign the memory created to first user
 		first->username = name;
@@ -42,8 +42,6 @@ void ELOManager::addNewUser(string name, float ELO) {
 		first->next = nullptr;
 		first->previous = nullptr;
 		last = first;
-		cout << "New user added: " << first->username << endl;
-		cout << "New elo added: " << first->ELO << endl;
 	}
 	else {
 		for (index = first; index->next != nullptr; index = index->next);
@@ -55,15 +53,12 @@ void ELOManager::addNewUser(string name, float ELO) {
 			newUser->next = nullptr;
 			newUser->previous = index;
 			last = newUser;			
-			cout << "New user added: " << newUser->username << endl;
 		}
 	}
 }
 
 void ELOManager::printUsers() {
 	user* index = new user();
-
-	cout << "first: [" << first->username << "]";
 
 	for (index = first; index != nullptr; index = index->next) {
 		cout << "Name:[" << index->username << "] ";
