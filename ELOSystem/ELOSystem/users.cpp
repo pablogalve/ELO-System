@@ -31,6 +31,33 @@ float ELOManager::getProbWinDown() {
 
 }
 */
+void ELOManager::orderUsers(){
+	user* index;
+	user* aux = new user();
+
+	while (checkOrder() == false) {
+		for (index = first; index->next != nullptr; index = index->next) {
+			if (index->ELO < index->next->ELO) {
+				aux = index;
+				index = index->next;
+				index->next = aux;
+			}
+		}
+	}	
+}
+bool ELOManager::checkOrder() {
+	user* index;
+	bool ordered = false;
+
+	for (index = first; index->next != nullptr; index = index->next) {
+		if (index->ELO < index->next->ELO) {
+			return false; //List is not sorted
+			break;
+		}
+	}
+	return true;
+}
+
 void ELOManager::addNewUser(string name, float ELO) {
 	user* newUser = new user();
 	user* index;

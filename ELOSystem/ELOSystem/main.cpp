@@ -19,6 +19,9 @@ int main() {
 
 	cout << "-- Users --" << endl;
 	elo->printUsers();
+	cout << "-- Sorting users by ELO... " << endl;
+	elo->orderUsers();
+	elo->printUsers();
 
 
 
