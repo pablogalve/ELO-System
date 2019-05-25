@@ -57,7 +57,6 @@ void ELOManager::addNewUser(string name, float ELO) {
 			cout << "New user added: " << newUser->username << endl;
 		}
 	}
-	//delete newUser; //Freeing memory to avoid memory leaks
 }
 
 void ELOManager::printUsers() {

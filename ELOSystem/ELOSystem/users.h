@@ -7,6 +7,7 @@ using namespace std;
 #define K 5; //constant number used to calculate ELO variations
 
 struct user {
+public:
 	string username;
 	float ELO;
 	float score;
@@ -15,11 +16,9 @@ struct user {
 };
 class ELOManager {
 private:
-	
-public:
 	user* first;
 	user* last;
-
+public:
 	ELOManager(); //Constructor
 	~ELOManager(); //Destructor
 	void calculateELO();
