@@ -5,10 +5,11 @@ ELOManager::ELOManager() {
 	this->last = nullptr;
 	
 }
-/*
+
 ELOManager::~ELOManager() {
 	cout << "List Deleted";
 }
+/*
 void ELOManager::calculateELO() {
 
 }
