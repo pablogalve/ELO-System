@@ -29,8 +29,9 @@ public:
 	void addNewUser(string name, float ELO); //Add a new user with an ELO of 0
 	void calculateScore(); //Calculate the resulting score of a game/day 
 	void printUsers();
-	void orderUsers(); //Order users based on their ELO
-	bool checkOrder(); //Checks if the list is already sorted or not
+	int getArraySize(); //Returns the number of users
+	void quickSort(user* first, int low, int high); //Order users based on their ELO
+	int partition(user* first, int low, int high);
 };
 
 #endif // !_USERS_H

@@ -30,34 +30,14 @@ float ELOManager::getProbWinUp() {
 float ELOManager::getProbWinDown() {
 
 }
+
+void ELOManager::quickSort(user* first, int low, int high){
+		
+}
+int ELOManager::partition(user* first, int low, int high) {
+	
+}
 */
-void ELOManager::orderUsers(){
-	user* index;
-	user* aux = new user();
-
-	while (checkOrder() == false) {
-		for (index = first; index->next != nullptr; index = index->next) {
-			if (index->ELO < index->next->ELO) {
-				aux = index;
-				index = index->next;
-				index->next = aux;
-			}
-		}
-	}	
-}
-bool ELOManager::checkOrder() {
-	user* index;
-	bool ordered = false;
-
-	for (index = first; index->next != nullptr; index = index->next) {
-		if (index->ELO < index->next->ELO) {
-			return false; //List is not sorted
-			break;
-		}
-	}
-	return true;
-}
-
 void ELOManager::addNewUser(string name, float ELO) {
 	user* newUser = new user();
 	user* index;
@@ -82,6 +62,17 @@ void ELOManager::addNewUser(string name, float ELO) {
 			last = newUser;			
 		}
 	}
+}
+
+int ELOManager::getArraySize() {
+	user* index;
+	int i = 0;
+	
+	for (index = first; index->next != nullptr; index = index->next) {
+		i++;
+	}
+	return i;
+	
 }
 
 void ELOManager::printUsers() {
