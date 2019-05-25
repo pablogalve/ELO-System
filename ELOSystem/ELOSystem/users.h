@@ -1,8 +1,8 @@
 #ifndef _USERS_H
 #define _USERS_H
 #include <iostream>
-using namespace std;
 #include <string>
+using namespace std;
 
 #define K 5; //constant number used to calculate ELO variations
 
@@ -15,9 +15,11 @@ struct user {
 };
 class ELOManager {
 private:
+	
+public:
 	user* first;
 	user* last;
-public:
+
 	ELOManager(); //Constructor
 	~ELOManager(); //Destructor
 	void calculateELO();

@@ -1,12 +1,13 @@
 #include "users.h"
 
 ELOManager::ELOManager() {
-	first = nullptr;
-	last = nullptr;
+	this->first = nullptr;
+	this->last = nullptr;
+	
 }
 /*
 ELOManager::~ELOManager() {
-
+	cout << "List Deleted";
 }
 void ELOManager::calculateELO() {
 
@@ -31,14 +32,17 @@ void ELOManager::addNewUser(string name, float ELO) {
 	user* newUser = new user();
 	user* index;
 
+	cout << "elo[" << ELO << "]";
+
 	if (first == nullptr) {
-		cout << "5";
 		first = newUser; //To assign the memory created to first user
 		first->username = name;
 		first->ELO = ELO;
 		first->next = nullptr;
 		first->previous = nullptr;
 		last = first;
+		cout << "New user added: " << first->username << endl;
+		cout << "New elo added: " << first->ELO << endl;
 	}
 	else {
 		for (index = first; index->next != nullptr; index = index->next);
@@ -49,11 +53,11 @@ void ELOManager::addNewUser(string name, float ELO) {
 			newUser->score = 0;
 			newUser->next = nullptr;
 			newUser->previous = index;
-			last->next = newUser;			
+			last = newUser;			
 			cout << "New user added: " << newUser->username << endl;
 		}
 	}
-	delete newUser; //Freeing memory to avoid memory leaks
+	//delete newUser; //Freeing memory to avoid memory leaks
 }
 
 void ELOManager::printUsers() {
