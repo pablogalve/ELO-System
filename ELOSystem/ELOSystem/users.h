@@ -1,5 +1,5 @@
-#ifndef _ELOMANAGER_H
-#define _ELOMANAGER_H
+#ifndef _USERS_H
+#define _USERS_H
 #include <iostream>
 using namespace std;
 #include <string>
@@ -30,4 +30,4 @@ public:
 	void printUsers();
 };
 
-#endif // !_ELOMANAGER_H
+#endif // !_USERS_H
