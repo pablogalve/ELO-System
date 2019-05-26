@@ -24,6 +24,6 @@ int main() {
 	//elo->orderList();
 	elo->printUsers();
 	
-
+	
 	return 0;
 }

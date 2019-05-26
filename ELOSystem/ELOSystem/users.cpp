@@ -34,7 +34,7 @@ float ELOManager::getProbWinDown() {
 void ELOManager::quickSort(user* name, int low, int high){
 	if(low<high)
 	{
-		cout << "aqui" << endl;
+		cout << "Quicksort" << endl;
 		int pi = partition(name, low, high);
 		
 		quickSort(name, low, pi - 1);
@@ -48,7 +48,7 @@ int ELOManager::partition(user* name, int low, int high) {
 	index = first;
 	aux = first;
 
-	cout << "user: [" << name->username << "]" << endl;
+	cout << "Partition user: [" << name->username << "]" << endl;
 
 	float pivot = last->ELO;
 	int i = (low - 1);
@@ -70,7 +70,7 @@ int ELOManager::partition(user* name, int low, int high) {
 		swap(aux->next, index);
 	}
 	else {
-		cout << "aqui es nullptr" << endl;
+		cout << "Aux is nullptr" << endl;
 	}
 			
 	return(i + 1);
@@ -157,11 +157,15 @@ int ELOManager::getArraySize() {
 	user* index;
 	int i = 0;
 	
-	for (index = first; index->next != nullptr; index = index->next) {
-		i++;
+	if (first == nullptr) {
+		return 0;
 	}
-	return i;
-	
+	else {		
+		for (index = first; index->next != nullptr; index = index->next) {
+			i++;
+		}
+		return i+1;
+	}	
 }
 user* ELOManager::getFirstUser() {
 	return first;
@@ -169,12 +173,14 @@ user* ELOManager::getFirstUser() {
 
 void ELOManager::printUsers() {
 	user* index = new user();
+	int i = 1;
 
 	for (index = first; index != nullptr; index = index->next) {
-		cout << "Name:[" << index->username << "] ";
+		cout << i << "Name:[" << index->username << "] ";
 		cout << "ELO:[" << index->ELO << "] ";
 		//cout << "Score:[" << index->score << "] ";
 		cout << endl;
+		i++;
 	}	
 	cout << endl;
 }
