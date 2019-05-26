@@ -30,14 +30,70 @@ float ELOManager::getProbWinUp() {
 float ELOManager::getProbWinDown() {
 
 }
-
-void ELOManager::quickSort(user* first, int low, int high){
-		
-}
-int ELOManager::partition(user* first, int low, int high) {
-	
-}
 */
+void ELOManager::quickSort(user* name, int low, int high){
+	if(low<high)
+	{
+		int pi = partition(name, low, high);
+		
+		quickSort(name, low, pi - 1);
+		quickSort(name, pi + 1, high);
+	}
+}
+int ELOManager::partition(user* name, int low, int high) {
+	user* index;
+	user* aux;
+
+	index = first;
+	aux = first;
+
+	cout << "first" << first->username;
+
+	float pivot = last->ELO;
+	int i = (low - 1);
+
+	for (int j = low; j <= high - 1; j++) 
+	{
+		if (index->ELO <= last->ELO)
+		{
+			i++;
+			if (aux->next != nullptr) 
+			{
+				aux = aux->next;
+			}
+			swap(aux, index);
+		}
+		index = index->next;
+	}	
+	swap(aux, index);
+		
+	return(i + 1);
+}
+void ELOManager::swap(user* name, user* second) {
+	user* aux;
+
+	aux = name;
+	aux->username = name->username;
+	aux->score = name->score;
+	aux->ELO = name->ELO;
+	aux->previous = name->previous;
+	aux->next = name->next;
+		
+	name = second;
+	name->username = second->username;
+	name->score = second->score;
+	name->ELO = second->ELO;
+	name->previous = second->previous;
+	name->next = second->next;
+
+	second = aux;
+	second->username = aux->username;
+	second->score = aux->score;
+	second->ELO = aux->ELO;
+	second->previous = aux->previous;
+	second->next = aux->next;
+}
+
 void ELOManager::addNewUser(string name, float ELO) {
 	user* newUser = new user();
 	user* index;
@@ -71,7 +127,7 @@ int ELOManager::getArraySize() {
 	for (index = first; index->next != nullptr; index = index->next) {
 		i++;
 	}
-	return i;
+	return i-1;
 	
 }
 

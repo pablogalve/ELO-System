@@ -9,10 +9,10 @@ using namespace std;
 struct user {
 public:
 	string username;
-	float ELO;
-	float score;
-	user* next;
-	user* previous;
+	float ELO = NULL;
+	float score = NULL;
+	user* next = nullptr;
+	user* previous = nullptr;
 };
 class ELOManager {
 private:
@@ -30,8 +30,9 @@ public:
 	void calculateScore(); //Calculate the resulting score of a game/day 
 	void printUsers();
 	int getArraySize(); //Returns the number of users
-	void quickSort(user* first, int low, int high); //Order users based on their ELO
-	int partition(user* first, int low, int high);
+	void quickSort(user* name, int low, int high); //Order users based on their ELO
+	int partition(user* name, int low, int high);
+	void swap(user* name, user* second); //change the position of two users
 };
 
 #endif // !_USERS_H
