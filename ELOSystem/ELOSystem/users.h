@@ -31,7 +31,7 @@ public:
 	void printUsers();
 	int getArraySize(); //Returns the number of users
 	void quickSort(user* name, int low, int high); //Order users based on their ELO
-	int partition(user* name, int low, int high);
+	user* partition(user* low, user* high);
 	void swap(user* name, user* second); //change the position of two users
 	user* getFirstUser(); //Returns the first user
 	void orderList(); //Orders the list - Beta mode. It is better to use quicksort method 

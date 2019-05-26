@@ -32,54 +32,31 @@ float ELOManager::getProbWinDown() {
 }
 */
 void ELOManager::quickSort(user* name, int low, int high){
-	if(low<high)
-	{
-		cout << "Quicksort" << endl;
-		int pi = partition(name, low, high);
-		
-		quickSort(name, low, pi - 1);
-		quickSort(name, pi + 1, high);
-	}
+	
+
+
 }
-int ELOManager::partition(user* name, int low, int high) {
-	user* index;
-	user* aux;
+user* ELOManager::partition(user* low, user* high) {
+	int pivot = high->ELO;
 
-	index = first;
-	aux = first;
+	user* i = low->previous;
 
-	cout << "Partition user: [" << name->username << "]" << endl;
+	for (user* j = low; j != high; j = j->next) {
+		if (j->ELO >= pivot){
+			i = (i == NULL) ? low : i->next;
 
-	float pivot = last->ELO;
-	int i = (low - 1);
-
-	for (int j = low; j <= high - 1; j++) 
-	{
-		if (index->ELO <= last->ELO)
-		{
-			i++;
-			if (aux->next != nullptr)
-				aux = aux->next;
-			
-			swap(aux, index);
+			swap(i, j);
 		}
-		if(index->next != nullptr)
-			index = index->next;
 	}
-	if (aux->next != nullptr) {
-		swap(aux->next, index);
-	}
-	else {
-		cout << "Aux is nullptr" << endl;
-	}
-			
-	return(i + 1);
+	i = (i == NULL) ? low : i->next;
+	swap(i, high);
+	return i;
 }
 void ELOManager::swap(user* A, user* B) {
 	user* tmp = new user();
 	user* swapperVector[4];
 
-	cout << "swap1[" << A->username << "]" << endl;
+	cout << endl << "swap1[" << A->username << "]" << endl;
 	cout << "swap2[" << B->username << "]" << endl;
 
 	swapperVector[0] = A->previous;
@@ -120,7 +97,7 @@ void ELOManager::swap(user* A, user* B) {
 	second->ELO = aux->ELO;
 	second->previous = aux->previous;
 	second->next = aux->next;*/
-	cout << endl << "Print list after swap" << endl;
+	cout <<"Print list after swap" << endl << "-----" << endl;
 	printUsers();
 }
 int ELOManager::areTheyNeighbours(user* A, user* B) {

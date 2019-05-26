@@ -10,7 +10,7 @@ int main() {
 	cin >> myName;
 
 	//Add users
-	elo->addNewUser(myName, 0);
+	elo->addNewUser(myName, 50);
 	elo->addNewUser("User1", 2724);
 	elo->addNewUser("User2", 30);
 	elo->addNewUser("User3", 5);
