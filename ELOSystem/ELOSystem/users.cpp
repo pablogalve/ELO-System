@@ -58,41 +58,73 @@ int ELOManager::partition(user* name, int low, int high) {
 		if (index->ELO <= last->ELO)
 		{
 			i++;
-			if (aux->next != nullptr) 
-			{
+			if (aux->next != nullptr)
 				aux = aux->next;
-			}
+			
 			swap(aux, index);
 		}
-		index = index->next;
-	}	
-	swap(aux->next, index);
-		
+		if(index->next != nullptr)
+			index = index->next;
+	}
+	if (aux->next != nullptr) {
+		swap(aux->next, index);
+	}
+	else {
+		cout << "aqui es nullptr" << endl;
+	}
+			
 	return(i + 1);
 }
-void ELOManager::swap(user* name, user* second) {
-	user* aux = new user();
+void ELOManager::swap(user* A, user* B) {
+	user* tmp = new user();
+	user* swapperVector[4];
 
-	//aux = name;
-	//aux->username = name->username;
-	//aux->score = name->score;
-	//->ELO = name->ELO;
+	cout << "swap1[" << A->username << "]" << endl;
+	cout << "swap2[" << B->username << "]" << endl;
+
+	swapperVector[0] = A->previous;
+	swapperVector[1] = B->previous;
+	swapperVector[2] = A->next;
+	swapperVector[3] = B->next;
+
+	if (areTheyNeighbours(A, B)) {
+		A->previous = swapperVector[2];
+		B->previous = swapperVector[0];
+		A->next = swapperVector[3];
+		B->next = swapperVector[1];
+	}
+	else {
+		A->previous = swapperVector[1];
+		B->previous = swapperVector[0];
+		A->next = swapperVector[3];
+		B->next = swapperVector[2];
+	}
+
+	/*aux = name;
+	aux->username = name->username;
+	aux->score = name->score;
+	aux->ELO = name->ELO;
 	aux->previous = name->previous;
 	aux->next = name->next;
 		
-	//name = second;
-	//name->username = second->username;
-	//name->score = second->score;
-	//name->ELO = second->ELO;
+	name = second;
+	name->username = second->username;
+	name->score = second->score;
+	name->ELO = second->ELO;
 	name->previous = second->previous;
 	name->next = second->next;
 
-	//second = aux;
-	//second->username = aux->username;
-	//second->score = aux->score;
-	//second->ELO = aux->ELO;
+	second = aux;
+	second->username = aux->username;
+	second->score = aux->score;
+	second->ELO = aux->ELO;
 	second->previous = aux->previous;
-	second->next = aux->next;
+	second->next = aux->next;*/
+	cout << endl << "Print list after swap" << endl;
+	printUsers();
+}
+int ELOManager::areTheyNeighbours(user* A, user* B) {
+	return(A->next == B && B->previous == A) || (A->previous == B && B->next == A);//return 1 if true or 0 if false
 }
 
 void ELOManager::addNewUser(string name, float ELO) {
@@ -145,4 +177,33 @@ void ELOManager::printUsers() {
 		cout << endl;
 	}	
 	cout << endl;
+}
+
+void ELOManager::orderList() {
+	user* index;
+	user* aux;
+	aux = first;
+	index = first;
+
+	for (index = first; index->next != nullptr; index = index->next) {
+		if (index < index->next) {
+			swap(index, index->next);	
+
+			/*aux = index;
+
+	//second node changed
+	index->next->previous = index->previous;
+	index->next->next = index;
+
+	//first node changed
+	index->next = index->next->next;
+	index->previous = index->next;
+
+	//previous node changed
+	index->previous->next = index->next;
+
+	//last node changed
+	index->next->next->previous = index;*/
+		}
+	}
 }

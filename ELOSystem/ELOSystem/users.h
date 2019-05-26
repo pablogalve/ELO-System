@@ -34,6 +34,8 @@ public:
 	int partition(user* name, int low, int high);
 	void swap(user* name, user* second); //change the position of two users
 	user* getFirstUser(); //Returns the first user
+	void orderList(); //Orders the list - Beta mode. It is better to use quicksort method 
+	int areTheyNeighbours(user* A, user* B);
 };
 
 #endif // !_USERS_H
