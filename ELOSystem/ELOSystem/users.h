@@ -30,7 +30,7 @@ public:
 	void calculateScore(); //Calculate the resulting score of a game/day 
 	void printUsers();
 	int getArraySize(); //Returns the number of users
-	void quickSort(user* head); //Order users based on their ELO
+	void quickSort(); //Order users based on their ELO
 	void _quickSort(user* low, user* high); 
 	user* partition(user* low, user* high);
 	void swap(user* name, user* second); //change the position of two users

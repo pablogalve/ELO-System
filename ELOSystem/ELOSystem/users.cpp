@@ -32,16 +32,14 @@ float ELOManager::getProbWinDown() {
 }
 */
 void ELOManager::_quickSort(user* low, user* high) {
-	if (high != nullptr && low != high && low != high->next) {
+	if (high != nullptr && low != high && low != nullptr) {
 		user* p = partition(low, high);
 		_quickSort(low, p->previous);
 		_quickSort(p->next, high);
 	}
 }
-void ELOManager::quickSort(user* head){
-	user* high = last;
-
-	_quickSort(head, last);
+void ELOManager::quickSort(){
+	_quickSort(first, last);
 }
 user* ELOManager::partition(user* low, user* high) {
 	float pivot = high->ELO;
@@ -55,8 +53,10 @@ user* ELOManager::partition(user* low, user* high) {
 			swap(i, j);
 		}
 	}
-	i = (i == NULL) ? low : i->next;
-	swap(i, high);
+	//i = (i == NULL) ? low : i->next;
+	swap(i->next, high);
+	cout << endl << "Loop finished -----------------------" << endl;
+	printUsers();
 	return i;
 }
 void ELOManager::swap(user* A, user* B) {
@@ -66,7 +66,10 @@ void ELOManager::swap(user* A, user* B) {
 	cout << endl << "swap1[" << A->username << "]" << endl;
 	cout << "swap2[" << B->username << "]" << endl;
 
-	if (A == B) return;
+	if (A == B) {
+		cout << "Same Users: Continue" << endl;
+		return;
+	}
 
 	if (B->next == A) {
 		tmp = A;
