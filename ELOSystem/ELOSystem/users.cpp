@@ -34,6 +34,7 @@ float ELOManager::getProbWinDown() {
 void ELOManager::quickSort(user* name, int low, int high){
 	if(low<high)
 	{
+		cout << "aqui" << endl;
 		int pi = partition(name, low, high);
 		
 		quickSort(name, low, pi - 1);
@@ -47,7 +48,7 @@ int ELOManager::partition(user* name, int low, int high) {
 	index = first;
 	aux = first;
 
-	cout << "first" << first->username;
+	cout << "user: [" << name->username << "]" << endl;
 
 	float pivot = last->ELO;
 	int i = (low - 1);
@@ -65,31 +66,31 @@ int ELOManager::partition(user* name, int low, int high) {
 		}
 		index = index->next;
 	}	
-	swap(aux, index);
+	swap(aux->next, index);
 		
 	return(i + 1);
 }
 void ELOManager::swap(user* name, user* second) {
-	user* aux;
+	user* aux = new user();
 
-	aux = name;
-	aux->username = name->username;
-	aux->score = name->score;
-	aux->ELO = name->ELO;
+	//aux = name;
+	//aux->username = name->username;
+	//aux->score = name->score;
+	//->ELO = name->ELO;
 	aux->previous = name->previous;
 	aux->next = name->next;
 		
-	name = second;
-	name->username = second->username;
-	name->score = second->score;
-	name->ELO = second->ELO;
+	//name = second;
+	//name->username = second->username;
+	//name->score = second->score;
+	//name->ELO = second->ELO;
 	name->previous = second->previous;
 	name->next = second->next;
 
-	second = aux;
-	second->username = aux->username;
-	second->score = aux->score;
-	second->ELO = aux->ELO;
+	//second = aux;
+	//second->username = aux->username;
+	//second->score = aux->score;
+	//second->ELO = aux->ELO;
 	second->previous = aux->previous;
 	second->next = aux->next;
 }
@@ -127,8 +128,11 @@ int ELOManager::getArraySize() {
 	for (index = first; index->next != nullptr; index = index->next) {
 		i++;
 	}
-	return i-1;
+	return i;
 	
+}
+user* ELOManager::getFirstUser() {
+	return first;
 }
 
 void ELOManager::printUsers() {
@@ -137,7 +141,7 @@ void ELOManager::printUsers() {
 	for (index = first; index != nullptr; index = index->next) {
 		cout << "Name:[" << index->username << "] ";
 		cout << "ELO:[" << index->ELO << "] ";
-		cout << "Score:[" << index->score << "] ";
+		//cout << "Score:[" << index->score << "] ";
 		cout << endl;
 	}	
 	cout << endl;

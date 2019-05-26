@@ -33,6 +33,7 @@ public:
 	void quickSort(user* name, int low, int high); //Order users based on their ELO
 	int partition(user* name, int low, int high);
 	void swap(user* name, user* second); //change the position of two users
+	user* getFirstUser(); //Returns the first user
 };
 
 #endif // !_USERS_H

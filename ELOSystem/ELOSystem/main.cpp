@@ -3,14 +3,7 @@
 
 int main() {
 	ELOManager* elo = new ELOManager();
-	string myName;
-	user* first = new user();
-	elo->addNewUser("test", 1500);
-	first->username = "test";
-	first->ELO = 1500;
-	first->previous = nullptr;
-	first->next = nullptr;
-	first->score = 0;
+	string myName;	
 
 	cout << "This is my ELO system :)" << endl;
 	cout << "What is your name?";
@@ -27,12 +20,8 @@ int main() {
 	cout << "-- Users --" << endl;
 	elo->printUsers();
 	cout << "-- Sorting users by ELO... " << endl;
-	elo->quickSort(first, 0, elo->getArraySize());
+	elo->quickSort(elo->getFirstUser(), 0, elo->getArraySize());
 	elo->printUsers();
-	
-
-
-
 	
 
 	return 0;
