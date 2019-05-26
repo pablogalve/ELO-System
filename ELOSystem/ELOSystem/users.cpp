@@ -31,18 +31,25 @@ float ELOManager::getProbWinDown() {
 
 }
 */
-void ELOManager::quickSort(user* name, int low, int high){
-	
+void ELOManager::_quickSort(user* low, user* high) {
+	if (high != nullptr && low != high && low != high->next) {
+		user* p = partition(low, high);
+		_quickSort(low, p->previous);
+		_quickSort(p->next, high);
+	}
+}
+void ELOManager::quickSort(user* head){
+	user* high = last;
 
-
+	_quickSort(head, last);
 }
 user* ELOManager::partition(user* low, user* high) {
-	int pivot = high->ELO;
+	float pivot = high->ELO;
 
 	user* i = low->previous;
 
-	for (user* j = low; j != high; j = j->next) {
-		if (j->ELO >= pivot){
+	for (user* j = low; j != high && j!=nullptr; j = j->next) {
+		if (j->ELO <= pivot){
 			i = (i == NULL) ? low : i->next;
 
 			swap(i, j);
@@ -58,6 +65,14 @@ void ELOManager::swap(user* A, user* B) {
 
 	cout << endl << "swap1[" << A->username << "]" << endl;
 	cout << "swap2[" << B->username << "]" << endl;
+
+	if (A == B) return;
+
+	if (B->next == A) {
+		tmp = A;
+		A = B;
+		B = tmp;
+	}	
 
 	swapperVector[0] = A->previous;
 	swapperVector[1] = B->previous;
@@ -77,26 +92,43 @@ void ELOManager::swap(user* A, user* B) {
 		B->next = swapperVector[2];
 	}
 
-	/*aux = name;
-	aux->username = name->username;
-	aux->score = name->score;
-	aux->ELO = name->ELO;
-	aux->previous = name->previous;
-	aux->next = name->next;
-		
-	name = second;
-	name->username = second->username;
-	name->score = second->score;
-	name->ELO = second->ELO;
-	name->previous = second->previous;
-	name->next = second->next;
+	if (A->previous != nullptr)
+		A->previous->next = A;
+	if (A->next != nullptr)
+		A->next->previous = A;
 
-	second = aux;
-	second->username = aux->username;
-	second->score = aux->score;
-	second->ELO = aux->ELO;
-	second->previous = aux->previous;
-	second->next = aux->next;*/
+	if (B->previous != nullptr)
+		B->previous->next = B;
+	if (B->next != nullptr)
+		B->next->previous = B;
+	/*
+	user* aux = new user();
+	aux = A;
+	aux->username = A->username;
+	aux->score = A->score;
+	aux->ELO = A->ELO;
+	aux->previous = A->previous;
+	aux->next = A->next;
+		
+	cout << endl << "swap1[" << A->username << "]" << endl;
+	cout << "swap2[" << B->username << "]" << endl;
+
+	A = B;
+	A->username = B->username;
+	A->score = B->score;
+	A->ELO = B->ELO;
+	A->previous = B->previous;
+	A->next = B->next;
+
+	B = aux;
+	B->username = aux->username;
+	B->score = aux->score;
+	B->ELO = aux->ELO;
+	B->previous = aux->previous;
+	B->next = aux->next;
+	*/
+	
+
 	cout <<"Print list after swap" << endl << "-----" << endl;
 	printUsers();
 }

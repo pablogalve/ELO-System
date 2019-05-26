@@ -1,5 +1,1 @@
-﻿  main.cpp
-  users.cpp
-  Generando código...
-C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\ELOSystem\users.cpp(40,12): warning C4244:  'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-  ELOSystem.vcxproj -> C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\x64\Debug\ELOSystem.exe
+﻿  ELOSystem.vcxproj -> C:\Users\Pablo\Documents\GitHub\ELO-System\ELOSystem\x64\Debug\ELOSystem.exe
