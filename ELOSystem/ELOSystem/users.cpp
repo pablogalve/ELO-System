@@ -31,15 +31,15 @@ float ELOManager::getProbWinDown() {
 	return 0;
 }
 
-void ELOManager::_quickSort(user* low, user* high) {
+void ELOManager::_quickSortRecursive(user* low, user* high) {
 	if (high != nullptr && low != high && low != nullptr) {
 		user* p = partition(low, high);
-		_quickSort(low, p->previous);
-		_quickSort(p->next, high);
+		_quickSortRecursive(low, p->previous);
+		_quickSortRecursive(p->next, high);
 	}
 }
 void ELOManager::quickSort(){
-	_quickSort(first, last);
+	_quickSortRecursive(first, last);
 }
 user* ELOManager::partition(user* low, user* high) {
 	float pivot = high->ELO;
