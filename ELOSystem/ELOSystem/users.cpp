@@ -70,31 +70,47 @@ void ELOManager::swap(user* A, user* B) {
 		cout << "Same Users: Continue" << endl;
 		return;
 	}
-
+	/*
 	if (B->next == A) {
 		tmp = A;
 		A = B;
 		B = tmp;
-	}	
+		return;
+	}	*/
 
 	swapperVector[0] = A->previous;
 	swapperVector[1] = B->previous;
 	swapperVector[2] = A->next;
-	swapperVector[3] = B->next;
-
+	swapperVector[3] = B->next;	
+	
 	if (areTheyNeighbours(A, B)) {
-		A->previous = swapperVector[2];
-		B->previous = swapperVector[0];
+		A->previous->next = B;
+		A->next->previous = B;
+		B->previous->next = A;
+		B->next->previous = A;
+
+
+		A->previous = B;
+		B->previous = swapperVector[1];
 		A->next = swapperVector[3];
-		B->next = swapperVector[1];
+		B->next = A;	
+		cout << endl << "Option 1" << endl;
 	}
 	else {
 		A->previous = swapperVector[1];
 		B->previous = swapperVector[0];
 		A->next = swapperVector[3];
 		B->next = swapperVector[2];
+
+		A->previous->next = B;
+		A->next->previous = B;
+		B->previous->next = A;
+		B->next->previous = A;
+		cout << endl << "Option 2" << endl;
 	}
 
+	
+	/*
 	if (A->previous != nullptr)
 		A->previous->next = A;
 	if (A->next != nullptr)
@@ -104,39 +120,21 @@ void ELOManager::swap(user* A, user* B) {
 		B->previous->next = B;
 	if (B->next != nullptr)
 		B->next->previous = B;
-	/*
-	user* aux = new user();
-	aux = A;
-	aux->username = A->username;
-	aux->score = A->score;
-	aux->ELO = A->ELO;
-	aux->previous = A->previous;
-	aux->next = A->next;
-		
-	cout << endl << "swap1[" << A->username << "]" << endl;
-	cout << "swap2[" << B->username << "]" << endl;
-
-	A = B;
-	A->username = B->username;
-	A->score = B->score;
-	A->ELO = B->ELO;
-	A->previous = B->previous;
-	A->next = B->next;
-
-	B = aux;
-	B->username = aux->username;
-	B->score = aux->score;
-	B->ELO = aux->ELO;
-	B->previous = aux->previous;
-	B->next = aux->next;
-	*/
+	*/	
 	
 
 	cout <<"Print list after swap" << endl << "-----" << endl;
 	printUsers();
 }
 int ELOManager::areTheyNeighbours(user* A, user* B) {
-	return(A->next == B && B->previous == A) || (A->previous == B && B->next == A);//return 1 if true or 0 if false
+	if ((A->next == B && B->previous == A) || (A->previous == B && B->next == A)) {
+		cout << endl << "We are neighbours ++++++" << endl;
+		return 1;
+	}
+	else {
+		cout << endl << "No neighbours ------" << endl;
+		return 0;
+	}
 }
 
 void ELOManager::addNewUser(string name, float ELO) {
@@ -188,7 +186,7 @@ void ELOManager::printUsers() {
 	int i = 1;
 
 	for (index = first; index != nullptr; index = index->next) {
-		cout << i << "Name:[" << index->username << "] ";
+		cout << i << "-- Name:[" << index->username << "] ";
 		cout << "ELO:[" << index->ELO << "] ";
 		//cout << "Score:[" << index->score << "] ";
 		cout << endl;
