@@ -4,7 +4,7 @@
 int main() {
 	ELOManager* elo = new ELOManager();
 	string myName;	
-
+	
 	cout << "This is my ELO system :)" << endl;
 	cout << "What is your name?";
 	cin >> myName;
@@ -21,8 +21,9 @@ int main() {
 	cout << "-- Users --" << endl;
 	elo->printUsers();
 	cout << "-- Sorting users by ELO... " << endl;
-	elo->quickSort();
+	//elo->quickSort();
 	//elo->orderList();
+	elo->test();
 	elo->printUsers();
 	
 	

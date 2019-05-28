@@ -59,9 +59,17 @@ user* ELOManager::partition(user* low, user* high) {
 	printUsers();
 	return i;
 }
+void ELOManager::test() {
+	//swap(first->next, first->next->next);
+	//swap(first->next, first->next->next->next->next);
+	swap(first->next->next, first->next->next->next);
+	swap(first->next, first->next->next);
+	swap(first->next->next, first->next->next->next);
+	swap(first->next, first->next->next);
+}
 void ELOManager::swap(user* A, user* B) {
 	user* tmp = new user();
-	user* swapperVector[4];
+	user* swapperVector[6];
 
 	cout << endl << "swap1[" << A->username << "]" << endl;
 	cout << "swap2[" << B->username << "]" << endl;
@@ -70,30 +78,37 @@ void ELOManager::swap(user* A, user* B) {
 		cout << "Same Users: Continue" << endl;
 		return;
 	}
-	/*
+	
 	if (B->next == A) {
 		tmp = A;
 		A = B;
 		B = tmp;
 		return;
-	}	*/
+	}
 
 	swapperVector[0] = A->previous;
 	swapperVector[1] = B->previous;
 	swapperVector[2] = A->next;
 	swapperVector[3] = B->next;	
+	swapperVector[4] = first->next;	
+	swapperVector[5] = last->previous;	
 	
 	if (areTheyNeighbours(A, B)) {
-		A->previous->next = B;
-		A->next->previous = B;
-		B->previous->next = A;
-		B->next->previous = A;
+		if (A != first)
+		{
+			A->previous->next = B;
+			A->next->previous = B;
+			B->previous->next = A;
+			//B->next->previous = swapperVector[2];
 
 
-		A->previous = B;
-		B->previous = swapperVector[1];
-		A->next = swapperVector[3];
-		B->next = A;	
+			A->previous = B;
+			B->previous = swapperVector[0];
+			A->next = swapperVector[3];
+			B->next = A;
+			A->next->previous = A;
+		}
+			
 		cout << endl << "Option 1" << endl;
 	}
 	else {
