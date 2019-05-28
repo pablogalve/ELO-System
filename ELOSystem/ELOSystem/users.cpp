@@ -11,26 +11,26 @@ ELOManager::~ELOManager() {
 	delete last;
 	cout << "List Deleted";
 }
-/*
-void ELOManager::calculateELO() {
 
+void ELOManager::calculateELO() {
+	
 }
 void ELOManager::calculateScore() {
 
 }
 float ELOManager::getAvgUp() {
-
+	return 0;
 }
 float ELOManager::getAvgDown() {
-
+	return 0;
 }
 float ELOManager::getProbWinUp() {
-
+	return 0;
 }
 float ELOManager::getProbWinDown() {
-
+	return 0;
 }
-*/
+
 void ELOManager::_quickSort(user* low, user* high) {
 	if (high != nullptr && low != high && low != nullptr) {
 		user* p = partition(low, high);
