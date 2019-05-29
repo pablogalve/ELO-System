@@ -18,6 +18,7 @@ int main() {
 	elo->addNewUser("User5", 50);
 	elo->addNewUser("User6", 70);
 
+
 	cout << "-- Users --" << endl;
 	elo->printUsers();
 	cout << "-- Sorting users by ELO... " << endl;
@@ -25,7 +26,7 @@ int main() {
 	//elo->orderList();
 	//elo->test();
 	elo->printUsers();
-	
+	cout << "Done! " << endl;
 	
 	return 0;
 }

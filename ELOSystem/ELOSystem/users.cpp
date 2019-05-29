@@ -32,10 +32,13 @@ float ELOManager::getProbWinDown() {
 }
 
 void ELOManager::_quickSortRecursive(user* low, user* high) {
-	if (high != nullptr && low != high && low != nullptr) {
+	user* aux = high;
+	if (high != nullptr && low != high && low != high->next) {
 		user* p = partition(low, high);
+		
 		_quickSortRecursive(low, p->previous);
-		_quickSortRecursive(p->next, high);
+		cout << "AQUI LLEGA **************************************************" << endl;
+		_quickSortRecursive(p->next, aux);
 	}
 }
 void ELOManager::quickSort(){
@@ -47,6 +50,7 @@ user* ELOManager::partition(user* low, user* high) {
 	user* i = low->previous;
 	user* auxI = high;
 	user* auxJ = high;
+	bool breakLoop = false; //Break left partition and start on the right part
 
 	cout << "Pivot Previous: " << pivot->ELO << "/////////////////////////////////" << endl;
 	for (user* j = low; j != high && j!=nullptr; j = j->next) {
@@ -85,12 +89,14 @@ user* ELOManager::partition(user* low, user* high) {
 			}
 			cout << "index after swap: " << i->username << endl;
 			cout << "j after swap: " << j->username << endl;
+			breakLoop = true;
 		}
 		else {
 			cout << "j->ELO <= pivot-> ELO --> FALSE" << endl;
 			cout << "j: " << JJ << endl;
 			cout << "index: " << index << endl;
 		}
+		JJ++;
 	}
 	//i = (i == NULL) ? low : i->next;
 	cout << "We swap pivot and i->next: " << pivot->username << "  " << i->next->username << endl;
@@ -105,8 +111,11 @@ user* ELOManager::partition(user* low, user* high) {
 	}
 	cout << "partition returns i: " << i->ELO << endl;
 	cout << endl << "Loop finished -----------------------" << endl;
-	//printUsers();
-	return i->next;
+	printUsers();
+	if (i == first->next)
+		return i->next;
+	else
+		return i->next;
 }
 void ELOManager::test() {
 	//swap(first->next, first->next->next);
@@ -155,7 +164,25 @@ void ELOManager::swap(user* A, user* B) {
 			B->previous = swapperVector[0];
 			A->next = swapperVector[3];
 			B->next = A;
-			A->next->previous = A;
+			if(A->next!=nullptr)
+				A->next->previous = A;
+		}
+		else if (A == first) {
+			
+			//A->previous->next = B;
+			A->next->previous = B;
+			B->previous->next = A;
+			//B->next->previous = swapperVector[2];
+
+			
+			//A->previous = B;
+			B->previous = swapperVector[0];
+			A->next = swapperVector[3];
+			B->next = A;
+			if (A->next != nullptr)
+				A->next->previous = A;
+
+			first = B;
 		}
 			
 		cout << endl << "Option 1" << endl;
@@ -268,26 +295,16 @@ void ELOManager::orderList() {
 	user* aux;
 	aux = first;
 	index = first;
-
-	for (index = first; index->next != nullptr; index = index->next) {
-		if (index < index->next) {
-			swap(index, index->next);	
-
-			/*aux = index;
-
-	//second node changed
-	index->next->previous = index->previous;
-	index->next->next = index;
-
-	//first node changed
-	index->next = index->next->next;
-	index->previous = index->next;
-
-	//previous node changed
-	index->previous->next = index->next;
-
-	//last node changed
-	index->next->next->previous = index;*/
+	bool ordered = false;
+	while (ordered == false)
+	{
+		ordered = true;
+		for (index = first; index->next != nullptr; index = index->next) {
+			if (index->ELO < index->next->ELO) {
+				swap(index, index->next);
+				ordered = false;
+				break;
+			}
 		}
-	}
+	}	
 }
