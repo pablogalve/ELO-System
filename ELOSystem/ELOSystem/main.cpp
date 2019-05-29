@@ -21,9 +21,9 @@ int main() {
 	cout << "-- Users --" << endl;
 	elo->printUsers();
 	cout << "-- Sorting users by ELO... " << endl;
-	//elo->quickSort();
+	elo->quickSort();
 	//elo->orderList();
-	elo->test();
+	//elo->test();
 	elo->printUsers();
 	
 	

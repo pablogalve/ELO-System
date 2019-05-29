@@ -42,21 +42,39 @@ void ELOManager::quickSort(){
 	_quickSortRecursive(first, last);
 }
 user* ELOManager::partition(user* low, user* high) {
-	float pivot = high->ELO;
-
+	user* pivot = high;
+	int index =-1, JJ = 0;
 	user* i = low->previous;
+	user* auxI = high;
+	user* auxJ = high;
 
+	cout << "Pivot Previous: " << pivot->ELO << "/////////////////////////////////" << endl;
 	for (user* j = low; j != high && j!=nullptr; j = j->next) {
-		if (j->ELO <= pivot){
+		if (j->ELO <= pivot->ELO){
+			cout << endl << j->ELO <<" <= pivot-> ELO --> TRUE" << endl;
+			cout << "i++ and swap(i,j)" << endl;
+			cout << "j: " << JJ << endl;
+			cout << "index before: " << index << endl;
 			i = (i == NULL) ? low : i->next;
-
+			index++;
+			cout << "index after: " << index << endl;
+			auxI = i->previous;
+			auxJ = j;
 			swap(i, j);
+			//i = auxI;
+			//j = auxJ;
+		}
+		else {
+			cout << "j->ELO <= pivot-> ELO --> FALSE" << endl;
+			cout << "j: " << JJ << endl;
+			cout << "index: " << index << endl;
 		}
 	}
 	//i = (i == NULL) ? low : i->next;
-	swap(i->next, high);
+	cout << "We swap pivot and i->next: " << pivot->username << "  " << i->next->username << endl;
+	swap(i->next, pivot);
 	cout << endl << "Loop finished -----------------------" << endl;
-	printUsers();
+	//printUsers();
 	return i;
 }
 void ELOManager::test() {
