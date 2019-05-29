@@ -37,7 +37,7 @@ void ELOManager::_quickSortRecursive(user* low, user* high) {
 		user* p = partition(low, high);
 		
 		_quickSortRecursive(low, p->previous);
-		cout << "AQUI LLEGA **************************************************" << endl;
+		cout << "Now, quicksort right part **************************************************" << endl;
 		_quickSortRecursive(p->next, high);
 	}
 }
@@ -109,12 +109,14 @@ user* ELOManager::partition(user* low, user* high) {
 			}
 			k++;			
 		}
-		cout << "partition returns i: " << i->ELO << endl;
+		cout << "partition returns i: " << i->next->ELO << endl;
 		cout << endl << "Loop finished -----------------------" << endl;
 		printUsers();
 		return i->next;
+		
 	}
 	else {
+		cout << "We return low " << endl;
 		return low;
 	}	
 }
