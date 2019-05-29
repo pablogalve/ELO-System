@@ -67,10 +67,11 @@ user* ELOManager::partition(user* low, user* high) {
 			cout << "index after swap: " << i->username << endl;
 			cout << "j after swap: " << j->username << endl;
 			
+			int k = 0;
 			for (user* indexI = first; indexI->next != nullptr; indexI = indexI->next) {
-				int k = 0;
+				
 				if (k == index) {
-					//i = indexI;	
+					i = indexI;	
 
 				}
 				k++;
