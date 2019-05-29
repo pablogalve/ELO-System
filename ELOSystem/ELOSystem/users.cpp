@@ -32,13 +32,13 @@ float ELOManager::getProbWinDown() {
 }
 
 void ELOManager::_quickSortRecursive(user* low, user* high) {
-	user* aux = high;
+	//user* aux = high;
 	if (high != nullptr && low != high && low != high->next) {
 		user* p = partition(low, high);
 		
 		_quickSortRecursive(low, p->previous);
 		cout << "AQUI LLEGA **************************************************" << endl;
-		_quickSortRecursive(p->next, aux);
+		_quickSortRecursive(p->next, high);
 	}
 }
 void ELOManager::quickSort(){
@@ -98,24 +98,25 @@ user* ELOManager::partition(user* low, user* high) {
 		}
 		JJ++;
 	}
-	//i = (i == NULL) ? low : i->next;
-	cout << "We swap pivot and i->next: " << pivot->username << "  " << i->next->username << endl;
-	swap(i->next, pivot);
-	int k = 0;
-	for (user* indexI = first; indexI->next != nullptr; indexI = indexI->next) {
+	i = (i == NULL) ? low : i->next;
+	if (i->next != nullptr) {
+		swap(i->next, pivot);
+		int k = 0;
+		for (user* indexI = first; indexI->next != nullptr; indexI = indexI->next) {
 
-		if (k == index) {
-			i = indexI;
+			if (k == index) {
+				i = indexI;
+			}
+			k++;			
 		}
-		k++;
+		cout << "partition returns i: " << i->ELO << endl;
+		cout << endl << "Loop finished -----------------------" << endl;
+		printUsers();
+		return i->next;
 	}
-	cout << "partition returns i: " << i->ELO << endl;
-	cout << endl << "Loop finished -----------------------" << endl;
-	printUsers();
-	if (i == first->next)
-		return i->next;
-	else
-		return i->next;
+	else {
+		return low;
+	}	
 }
 void ELOManager::test() {
 	//swap(first->next, first->next->next);
@@ -280,14 +281,19 @@ void ELOManager::printUsers() {
 	user* index = new user();
 	int i = 1;
 
-	for (index = first; index != nullptr; index = index->next) {
-		cout << i << "-- Name:[" << index->username << "] ";
-		cout << "ELO:[" << index->ELO << "] ";
-		//cout << "Score:[" << index->score << "] ";
+	if (first == nullptr) {
+		cout << "List is empty" << endl;
+	}
+	else {
+		for (index = first; index != nullptr; index = index->next) {
+			cout << i << "-- Name:[" << index->username << "] ";
+			cout << "ELO:[" << index->ELO << "] ";
+			//cout << "Score:[" << index->score << "] ";
+			cout << endl;
+			i++;
+		}
 		cout << endl;
-		i++;
 	}	
-	cout << endl;
 }
 
 void ELOManager::orderList() {
