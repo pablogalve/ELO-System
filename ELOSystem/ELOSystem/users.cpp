@@ -64,8 +64,7 @@ user* ELOManager::partition(user* low, user* high) {
 			cout << "index after: " << i->username << endl;
 			
 			swap(i, j);
-			cout << "index after swap: " << i->username << endl;
-			cout << "j after swap: " << j->username << endl;
+			
 			
 			int k = 0;
 			for (user* indexI = first; indexI->next != nullptr; indexI = indexI->next) {
@@ -84,7 +83,8 @@ user* ELOManager::partition(user* low, user* high) {
 				}
 				k++;
 			}
-			
+			cout << "index after swap: " << i->username << endl;
+			cout << "j after swap: " << j->username << endl;
 		}
 		else {
 			cout << "j->ELO <= pivot-> ELO --> FALSE" << endl;
@@ -95,9 +95,18 @@ user* ELOManager::partition(user* low, user* high) {
 	//i = (i == NULL) ? low : i->next;
 	cout << "We swap pivot and i->next: " << pivot->username << "  " << i->next->username << endl;
 	swap(i->next, pivot);
+	int k = 0;
+	for (user* indexI = first; indexI->next != nullptr; indexI = indexI->next) {
+
+		if (k == index) {
+			i = indexI;
+		}
+		k++;
+	}
+	cout << "partition returns i: " << i->ELO << endl;
 	cout << endl << "Loop finished -----------------------" << endl;
 	//printUsers();
-	return i;
+	return i->next;
 }
 void ELOManager::test() {
 	//swap(first->next, first->next->next);
