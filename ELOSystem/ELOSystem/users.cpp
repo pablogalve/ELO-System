@@ -55,14 +55,27 @@ user* ELOManager::partition(user* low, user* high) {
 			cout << "i++ and swap(i,j)" << endl;
 			cout << "j: " << JJ << endl;
 			cout << "index before: " << index << endl;
+			cout << "j: " << j->username << endl;
+			if(i != nullptr)
+				cout << "index before: " << i->username << endl;
 			i = (i == NULL) ? low : i->next;
 			index++;
 			cout << "index after: " << index << endl;
-			auxI = i->previous;
-			auxJ = j;
+			cout << "index after: " << i->username << endl;
+			
 			swap(i, j);
-			//i = auxI;
-			//j = auxJ;
+			cout << "index after swap: " << i->username << endl;
+			cout << "j after swap: " << j->username << endl;
+			
+			for (user* indexI = first; indexI->next != nullptr; indexI = indexI->next) {
+				int k = 0;
+				if (k == index) {
+					//i = indexI;	
+
+				}
+				k++;
+			}
+			
 		}
 		else {
 			cout << "j->ELO <= pivot-> ELO --> FALSE" << endl;
@@ -135,10 +148,14 @@ void ELOManager::swap(user* A, user* B) {
 		A->next = swapperVector[3];
 		B->next = swapperVector[2];
 
-		A->previous->next = B;
-		A->next->previous = B;
-		B->previous->next = A;
-		B->next->previous = A;
+		if(A->previous!=nullptr)
+			A->previous->next = A;
+		if(A->next!=nullptr)
+			A->next->previous = A;
+		if(B->previous !=nullptr)
+			B->previous->next = B;
+		if(B->next!=nullptr)
+			B->next->previous = B;
 		cout << endl << "Option 2" << endl;
 	}
 
