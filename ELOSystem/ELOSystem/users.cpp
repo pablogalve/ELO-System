@@ -72,7 +72,15 @@ user* ELOManager::partition(user* low, user* high) {
 				
 				if (k == index) {
 					i = indexI;	
+				}
+				k++;
+			}
+			
+			k = 0;
+			for (user* indexJ = first; indexJ->next != nullptr; indexJ = indexJ->next) {
 
+				if (k == index) {
+					i = indexJ;
 				}
 				k++;
 			}
