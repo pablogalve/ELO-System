@@ -35,9 +35,11 @@ void ELOManager::_quickSortRecursive(user* low, user* high) {
 	//user* aux = high;
 	if (high != nullptr && low != high && low != high->next) {
 		user* p = partition(low, high);
-
+		cout << "HIGH1: " << high->username << endl;
 		_quickSortRecursive(low, p->previous);
 		cout << "Now, quicksort right part **************************************************" << endl;
+		cout << "LOW: " << p->next->username << endl;
+		cout << "HIGH2: " << high->username << endl;
 		_quickSortRecursive(p->next, high);
 	}
 }

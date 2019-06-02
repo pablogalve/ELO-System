@@ -14,8 +14,8 @@ int main() {
 	elo->addNewUser("User1", 80);
 	elo->addNewUser("User2", 30);
 	elo->addNewUser("User3", 90);
-	elo->addNewUser("User4", 100);
-	elo->addNewUser("User5", 85);
+	//elo->addNewUser("User4", 100);
+	//elo->addNewUser("User5", 85);
 	elo->addNewUser("User6", 40);
 	elo->addNewUser("User7", 50);
 	elo->addNewUser("User8", 70);
@@ -35,5 +35,6 @@ int main() {
 	elo->printUsers();
 	cout << "Done! " << endl;
 
+	system("pause");
 	return 0;
 }
