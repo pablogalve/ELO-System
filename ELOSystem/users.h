@@ -44,7 +44,7 @@ public:
 	user* getFirstUser(); //Returns the first user
 	void bubblesort();
 	int areTheyNeighbours(user* A, user* B);
-	void test();
+	
 };
 
 #endif // !_USERS_H

@@ -122,14 +122,7 @@ user* ELOManager::partition(user* low, user* high) {
 		return low;
 	}
 }
-void ELOManager::test() {
-	//swap(first->next, first->next->next);
-	//swap(first->next, first->next->next->next->next);
-	swap(first->next->next, first->next->next->next);
-	swap(first->next, first->next->next);
-	swap(first->next->next, first->next->next->next);
-	swap(first->next, first->next->next);
-}
+
 void ELOManager::swap(user* A, user* B) {
 	user* tmp = new user();
 	user* swapperVector[6];
