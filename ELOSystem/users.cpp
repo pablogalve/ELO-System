@@ -89,14 +89,14 @@ user* ELOManager::partition(user* low, user* high) {
 				}
 				k++;
 			}
-			cout << "index after swap: " << i->username << endl;
-			cout << "j after swap: " << j->username << endl;
+		//	cout << "index after swap: " << i->username << endl;
+		//	cout << "j after swap: " << j->username << endl;
 			breakLoop = true;
 		}
 		else {
-			cout << "j->ELO <= pivot-> ELO --> FALSE" << endl;
-			cout << "j: " << JJ << endl;
-			cout << "index: " << index << endl;
+		//	cout << "j->ELO <= pivot-> ELO --> FALSE" << endl;
+		//	cout << "j: " << JJ << endl;
+		//	cout << "index: " << index << endl;
 		}
 		JJ++;
 	}
@@ -111,14 +111,14 @@ user* ELOManager::partition(user* low, user* high) {
 			}
 			k++;
 		}
-		cout << "partition returns i: " << i->next->ELO << endl;
-		cout << endl << "Loop finished -----------------------" << endl;
+	//	cout << "partition returns i: " << i->next->ELO << endl;
+	//	cout << endl << "Loop finished -----------------------" << endl;
 		printUsers();
 		return i->next;
 
 	}
 	else {
-		cout << "We return low " << endl;
+	//	cout << "We return low " << endl;
 		return low;
 	}
 }
@@ -134,11 +134,11 @@ void ELOManager::swap(user* A, user* B) {
 	user* tmp = new user();
 	user* swapperVector[6];
 
-	cout << endl << "swap1[" << A->username << "]" << endl;
-	cout << "swap2[" << B->username << "]" << endl;
+	//cout << endl << "swap1[" << A->username << "]" << endl;
+	//cout << "swap2[" << B->username << "]" << endl;
 
 	if (A == B) {
-		cout << "Same Users: Continue" << endl;
+		//cout << "Same Users: Continue" << endl;
 		return;
 	}
 
@@ -190,7 +190,7 @@ void ELOManager::swap(user* A, user* B) {
 			first = B;
 		}
 
-		cout << endl << "Option 1" << endl;
+		//cout << endl << "Option 1" << endl;
 	}
 	else {
 		A->previous = swapperVector[1];
@@ -206,7 +206,7 @@ void ELOManager::swap(user* A, user* B) {
 			B->previous->next = B;
 		if (B->next != nullptr)
 			B->next->previous = B;
-		cout << endl << "Option 2" << endl;
+		//cout << endl << "Option 2" << endl;
 	}
 
 
@@ -223,16 +223,16 @@ void ELOManager::swap(user* A, user* B) {
 	*/
 
 
-	cout << "Print list after swap" << endl << "-----" << endl;
-	printUsers();
+	//cout << "Print list after swap" << endl << "-----" << endl;
+	//printUsers();
 }
 int ELOManager::areTheyNeighbours(user* A, user* B) {
 	if ((A->next == B && B->previous == A) || (A->previous == B && B->next == A)) {
-		cout << endl << "We are neighbours ++++++" << endl;
+		//cout << endl << "We are neighbours ++++++" << endl;
 		return 1;
 	}
 	else {
-		cout << endl << "No neighbours ------" << endl;
+		//cout << endl << "No neighbours ------" << endl;
 		return 0;
 	}
 }
@@ -303,8 +303,9 @@ void ELOManager::printUsers() {
 void ELOManager::bubblesort() {
 	
 	bool swapLocal;
-
+	cout << "Please be patient. It may take a couple of seconds..." << endl;
 	do {
+		swapLocal = false;
 		for (user* index = first; index->next != nullptr; index = index->next) {
 			if (index->ELO < index->next->ELO) {
 				swap(index, index->next);
