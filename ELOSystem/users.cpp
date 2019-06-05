@@ -18,16 +18,23 @@ void ELOManager::calculateELO() {
 void ELOManager::calculateScore() {
 
 }
-float ELOManager::getAvgUp() {
+float ELOManager::getAvgUp(user* myself) {
+	float ELOsum = 0, i = 0;
+
+	if (first == myself)
+		return NULL;
+	else {
+		for (user* index = first; index->next != myself; index = index->next) {
+			ELOsum += index->ELO;
+			i++;
+		}
+		return ELOsum / i;;
+	}
+}
+float ELOManager::getAvgDown(user* myself) {
 	return 0;
 }
-float ELOManager::getAvgDown() {
-	return 0;
-}
-float ELOManager::getProbWinUp() {
-	return 0;
-}
-float ELOManager::getProbWinDown() {
+float ELOManager::getProbWin(float myELO, float theirELO) {
 	return 0;
 }
 
