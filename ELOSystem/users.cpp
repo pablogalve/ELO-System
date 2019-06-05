@@ -180,7 +180,7 @@ void ELOManager::swap(user* A, user* B) {
 			//B->next->previous = swapperVector[2];
 
 
-			//A->previous = B;
+			A->previous = B;
 			B->previous = swapperVector[0];
 			A->next = swapperVector[3];
 			B->next = A;
@@ -300,21 +300,18 @@ void ELOManager::printUsers() {
 	}
 }
 
-void ELOManager::orderList() {
-	user* index;
-	user* aux;
-	aux = first;
-	index = first;
-	bool ordered = false;
-	while (ordered == false)
-	{
-		ordered = true;
-		for (index = first; index->next != nullptr; index = index->next) {
+void ELOManager::bubblesort() {
+	
+	bool swapLocal;
+
+	do {
+		for (user* index = first; index->next != nullptr; index = index->next) {
 			if (index->ELO < index->next->ELO) {
 				swap(index, index->next);
-				ordered = false;
-				break;
+				swapLocal = true;
+				if(index->previous!=nullptr)
+					index = index->previous;
 			}
 		}
-	}
+	} while (swapLocal);
 }

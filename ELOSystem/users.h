@@ -2,6 +2,7 @@
 #define _USERS_H
 #include <iostream>
 #include <string>
+#include <list>
 using namespace std;
 
 #define K 5; //constant number used to calculate ELO variations
@@ -41,7 +42,7 @@ public:
 	user* partition(user* low, user* high);
 	void swap(user* name, user* second); //change the position of two users
 	user* getFirstUser(); //Returns the first user
-	void orderList(); //Orders the list - Beta mode. It is better to use quicksort method 
+	void bubblesort();
 	int areTheyNeighbours(user* A, user* B);
 	void test();
 };
