@@ -45,7 +45,7 @@ float ELOManager::getAvgDown(user* myself) {
 	}
 }
 float ELOManager::getProbWin(float myELO, float theirELO) {
-	return 0;
+	return (1 / (1 + pow(10, (theirELO - myELO) / 400)));
 }
 
 void ELOManager::_quickSortRecursive(user* low, user* high) {
