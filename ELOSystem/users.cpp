@@ -32,7 +32,17 @@ float ELOManager::getAvgUp(user* myself) {
 	}
 }
 float ELOManager::getAvgDown(user* myself) {
-	return 0;
+	float ELOsum = 0, i = 0;
+
+	if (last == myself)
+		return NULL;
+	else {
+		for (user* index = last; index->previous != myself; index = index->previous) {
+			ELOsum += index->ELO;
+			i++;
+		}
+		return ELOsum / i;;
+	}
 }
 float ELOManager::getProbWin(float myELO, float theirELO) {
 	return 0;
