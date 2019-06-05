@@ -118,7 +118,9 @@
     <ClInclude Include="users.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ELOcalculations.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sort.cpp" />
     <ClCompile Include="users.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -24,7 +24,7 @@ public:
 	ELOManager(); //Constructor
 	~ELOManager(); //Destructor
 
-	void calculateELO();
+	void calculateELO(user* myself);
 	float getAvgUp(user* myself); //Get average ELO of all the users above you
 	float getAvgDown(user* myself); //Get average ELO of all the users below you
 	float getProbWin(float myELO, float theirELO); //Get your probabilities of beating users 
@@ -41,7 +41,7 @@ public:
 	user* partition(user* low, user* high);
 	void swap(user* name, user* second); //change the position of two users
 	user* getFirstUser(); //Returns the first user
-	void bubblesort();
+	void bubblesort(string orderBy);
 	int areTheyNeighbours(user* A, user* B);
 	
 };

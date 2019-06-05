@@ -31,14 +31,15 @@ int main() {
 	for (int i = 40; i >0; i--) {
 		elo->addNewUser("user", i+rand() %3000);
 	}
-
+	elo->bubblesort("ELO");
+	elo->calculateScore();
 
 	cout << "-- Users --" << endl;
 	elo->printUsers();
 	cout << endl << "-- We will start sorting in 3 seconds --" << endl;
 	sleep_until(system_clock::now() + seconds(3));
 	cout << "-- Sorting users by ELO... " << endl;
-	elo->bubblesort();
+	elo->bubblesort("Score");
 	elo->printUsers();
 	cout << "Done! " << endl;
 
