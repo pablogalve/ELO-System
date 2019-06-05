@@ -10,10 +10,11 @@ void ELOManager::calculateScore() {
 
 	for (user* index = first; index->next != nullptr; index = index->next) {
 		avg = getAvgUp(index);
-		probWin = getProbWin(index->ELO, avg) * 100;
+		probWin = getProbWin(index->ELO, index->next->ELO);
 		if (probWin == 0)
 			probWin = 1;
-		index->score = index->ELO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / probWin));
+		//index->score = index->ELO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / probWin));
+		index->score = index->ELO+7;
 
 		//avg = getAvgDown(index);
 		//probWin = getProbWin(index->ELO, avg) * 100;

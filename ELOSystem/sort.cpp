@@ -181,6 +181,7 @@ void ELOManager::bubblesort(string orderBy) {
 
 	if (orderBy == "ELO") {
 		bool swapLocal;
+		cout << "-- Sorting users by ELO... " << endl;
 		cout << "Please be patient. It may take a couple of seconds..." << endl;
 		do {
 			swapLocal = false;
@@ -196,6 +197,7 @@ void ELOManager::bubblesort(string orderBy) {
 	}
 	else if (orderBy == "Score") {
 		bool swapLocal;
+		cout << "-- Sorting users by Score... " << endl;
 		cout << "Please be patient. It may take a couple of seconds..." << endl;
 		do {
 			swapLocal = false;

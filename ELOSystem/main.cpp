@@ -38,7 +38,7 @@ int main() {
 	elo->printUsers();
 	cout << endl << "-- We will start sorting in 3 seconds --" << endl;
 	sleep_until(system_clock::now() + seconds(3));
-	cout << "-- Sorting users by ELO... " << endl;
+	
 	elo->bubblesort("Score");
 	elo->printUsers();
 	cout << "Done! " << endl;
