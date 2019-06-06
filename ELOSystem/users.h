@@ -5,7 +5,7 @@
 #include <list>
 using namespace std;
 
-#define K 5; //constant number used to calculate ELO variations
+#define K 20; //constant number used to calculate ELO variations
 
 struct user {
 public:

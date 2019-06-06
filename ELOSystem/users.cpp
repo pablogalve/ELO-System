@@ -70,6 +70,8 @@ void ELOManager::printUsers() {
 			cout << "Score:[" << index->score << "] ";
 			if(index->next!=nullptr)
 				cout << "ProbWin:[" << getProbWin(index->ELO,index->next->ELO) << "] ";
+			else
+				cout << "ProbWin:[" << getProbWin(index->ELO, index->previous->ELO) << "] ";
 			cout << endl;
 			i++;
 		}
