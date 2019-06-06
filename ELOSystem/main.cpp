@@ -30,19 +30,34 @@ int main() {
 	//elo->addNewUser("first", 1);
 	for (int i = 40; i >0; i--) {
 		//elo->addNewUser("user", i+rand() %3000);
-		elo->addNewUser("user", 500+i);
+		elo->addNewUser("user", 0);
 	}
 	elo->bubblesort("ELO");
 	elo->calculateScore();
 
 	cout << "-- Users --" << endl;
 	elo->printUsers();
-	cout << endl << "-- We will start sorting in 3 seconds --" << endl;
-	sleep_until(system_clock::now() + seconds(3));
+	//cout << endl << "-- We will start sorting in 3 seconds --" << endl;
+	//sleep_until(system_clock::now() + seconds(3));
+		
 	
-	elo->bubblesort("Score");
-	elo->printUsers();
-	cout << "Done! " << endl;
+	system("pause");
+	for (int i = 0; i < 100; i++) {
+		for (user* index = elo->getFirstUser(); index->next != nullptr; index = index->next) {
+			if (index->score > index->next->score)
+				elo->calculateELO(index, index->next->ELO, 1.0f);
+			else if (index->score < index->next->score)
+				elo->calculateELO(index, index->next->ELO, 0.0f);
+			else
+				elo->calculateELO(index, index->next->ELO, 0.5f);
+		}
+		elo->bubblesort("ELO");
+		elo->calculateScore();
+		cout << "--ELO Changes completed--" << endl;
+		elo->printUsers();
+		system("pause");
+	}
+	
 
 	system("pause");
 	return 0;

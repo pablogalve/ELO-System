@@ -1,28 +1,36 @@
 #include "users.h"
 
-void ELOManager::calculateELO(user* myself, float result) {
+void ELOManager::calculateELO(user* myself, float theirELO, float result) {
 	float changeELO;
 	float adjust;
-	changeELO = (result - getProbWin(myself->ELO, myself->next->ELO)) * myself->next->ELO * K;
+	bool change;
+	if (theirELO == 0) //To avoid not updating ELO
+		theirELO = 1;
+	changeELO = (result - getProbWin(myself->ELO, theirELO)) * K;
 	
 	//Change ELO balances to make sure that there are not negative ELOs and to create inflation on users with low ELO
 	if (result == 1) {
-		if (myself->ELO < 100) //Bonus to help users grow from low ELOs 
-			changeELO *= 1.5; //50% bonus
-		else if (myself->ELO < 200)
-			changeELO *= 1.2; //20% bonus
+	//	if (myself->ELO < 100) //Bonus to help users grow from low ELOs 
+			//changeELO *= 1.5; //50% bonus
+		//else if (myself->ELO < 200)
+			//changeELO *= 1.2; //20% bonus
 
-		myself->ELO += changeELO;
+		change = true;
 	}
 	else { 
+		change = true;
 		adjust = changeELO + myself->ELO;
-		if (adjust < 0) //Players can't have negative ELO
+		if (adjust < 0) { //Players can't have negative ELO
 			myself->ELO = 0;
-		if (adjust <= 100)
-			changeELO += 20; //Bonus to avoid users approach a very low level
+			change = false;
+		}
+		//if (adjust <= 100)
+			//changeELO += 20; //Bonus to avoid users approach a very low level
 
 
 	}
+	if(change)
+		myself->ELO += changeELO;
 }
 void ELOManager::calculateScore() {
 	//This must be changed at a later stage
