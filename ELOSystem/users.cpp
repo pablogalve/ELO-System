@@ -68,7 +68,8 @@ void ELOManager::printUsers() {
 			cout << i << "-- Name:[" << index->username << "] ";
 			cout << "ELO:[" << index->ELO << "] ";
 			cout << "Score:[" << index->score << "] ";
-			cout << "ProbWin:[" << getProbWin(index->ELO,getAvgUp(index)) << "] ";
+			if(index->next!=nullptr)
+				cout << "ProbWin:[" << getProbWin(index->ELO,index->next->ELO) << "] ";
 			cout << endl;
 			i++;
 		}

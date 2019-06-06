@@ -29,7 +29,8 @@ int main() {
 
 	//elo->addNewUser("first", 1);
 	for (int i = 40; i >0; i--) {
-		elo->addNewUser("user", i+rand() %3000);
+		//elo->addNewUser("user", i+rand() %3000);
+		elo->addNewUser("user", 500+i);
 	}
 	elo->bubblesort("ELO");
 	elo->calculateScore();
