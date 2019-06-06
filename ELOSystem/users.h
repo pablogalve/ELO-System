@@ -24,7 +24,7 @@ public:
 	ELOManager(); //Constructor
 	~ELOManager(); //Destructor
 
-	void calculateELO(user* myself);
+	void calculateELO(user* myself, float result);
 	float getAvgUp(user* myself); //Get average ELO of all the users above you
 	float getAvgDown(user* myself); //Get average ELO of all the users below you
 	float getProbWin(float myELO, float theirELO); //Get your probabilities of beating users 

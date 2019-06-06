@@ -1,7 +1,7 @@
 #include "users.h"
 
-void ELOManager::calculateELO(user* myself) {
-
+void ELOManager::calculateELO(user* myself, float result) {
+	myself->ELO += (result - getProbWin(myself->ELO, myself->next->ELO)) * myself->next->ELO * K;
 }
 void ELOManager::calculateScore() {
 	//This must be changed at a later stage
