@@ -16,6 +16,7 @@ public:
 	user* next = nullptr;
 	user* previous = nullptr;
 };
+
 class ELOManager {
 private:
 	user* first;
@@ -35,6 +36,7 @@ public:
 	void addNewUser(string name, float ELO); //Add a new user with an ELO of 0	
 	void printUsers();
 	user* getFirstUser(); //Returns the first user
+	user* getLastUser(); //Returns the first user
 
 	//Sorting users
 	int getArraySize(); //Returns the number of users

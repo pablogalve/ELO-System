@@ -26,18 +26,30 @@ void ELOManager::calculateELO(user* myself, float theirELO, float result) {
 void ELOManager::calculateScore() {
 	//This must be changed at a later stage
 	float avg; // average ELO of other users
-	float probWin;
-
-	for (user* index = first; index->next != nullptr; index = index->next) {
-		avg = getAvgUp(index);
-		probWin = getProbWin(index->ELO, index->next->ELO);
+	float probWinUp;
+	float probWinDown=0;
+	user* index = first;
 	
-		index->score = index->ELO/3 + static_cast <float> (rand()) / (static_cast <float> (200 / probWin));
+	while (index != nullptr) {
+		avg = getAvgUp(index);
+		//Probabilities of beating the user before you
+		if(index->next!=nullptr)
+			probWinUp = getProbWin(index->ELO, index->next->ELO);
+		
+		//Probabilities of beating the user after you
+		/*if(index->previous !=nullptr) {
+			probWinDown=getProbWin(index->ELO, index->previous->ELO);
+		}*/
+
+		index->score = index->ELO / 3 + static_cast <float> (rand()) / (static_cast <float> (200 / (probWinUp+probWinDown)));
 		//index->score = index->ELO+7;
 
 		//avg = getAvgDown(index);
 		//probWin = getProbWin(index->ELO, avg) * 100;
 		//index->score -= index->ELO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / probWin));
+
+		//Finish loop
+		index = index->next;
 	}
 }
 float ELOManager::getAvgUp(user* myself) {

@@ -27,10 +27,10 @@ int main() {
 	elo->addNewUser("User7", 50);
 	elo->addNewUser("User8", 70);
 
-	//elo->addNewUser("first", 1);
+	
 	for (int i = 40; i >0; i--) {
-		//elo->addNewUser("user", i+rand() %3000);
-		elo->addNewUser("user", 1500);
+		elo->addNewUser("user", i+rand() %3000);
+		//elo->addNewUser("user", 1500);
 	}
 	elo->bubblesort("ELO");
 	elo->calculateScore();
@@ -40,9 +40,10 @@ int main() {
 	//cout << endl << "-- We will start sorting in 3 seconds --" << endl;
 	//sleep_until(system_clock::now() + seconds(3));
 		
-	
+	cout << "Click any button to start the tournament" << endl; 
 	system("pause");
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 500; i++) {
+		//Users competing agains lower users in the ranking
 		for (user* index = elo->getFirstUser(); index->next != nullptr; index = index->next) {
 			if (index->score > index->next->score)
 				elo->calculateELO(index, index->next->ELO, 1.0f);
@@ -50,6 +51,15 @@ int main() {
 				elo->calculateELO(index, index->next->ELO, 0.0f);
 			else
 				elo->calculateELO(index, index->next->ELO, 0.5f);
+		}
+		//Users competing agains higher users in the ranking
+		for (user* index = elo->getLastUser(); index->previous != nullptr; index = index->previous) {
+			if (index->score > index->previous->score)
+				elo->calculateELO(index, index->previous->ELO, 1.0f);
+			else if (index->score < index->previous->score)
+				elo->calculateELO(index, index->previous->ELO, 0.0f);
+			else
+				elo->calculateELO(index, index->previous->ELO, 0.5f);
 		}
 		elo->bubblesort("ELO");
 		elo->calculateScore();		

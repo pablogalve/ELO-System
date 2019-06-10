@@ -55,6 +55,9 @@ int ELOManager::getArraySize() {
 user* ELOManager::getFirstUser() {
 	return first;
 }
+user* ELOManager::getLastUser() {
+	return last;
+}
 
 void ELOManager::printUsers() {
 	user* index = new user();
