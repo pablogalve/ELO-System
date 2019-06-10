@@ -30,7 +30,7 @@ int main() {
 	//elo->addNewUser("first", 1);
 	for (int i = 40; i >0; i--) {
 		//elo->addNewUser("user", i+rand() %3000);
-		elo->addNewUser("user", 0);
+		elo->addNewUser("user", 1500);
 	}
 	elo->bubblesort("ELO");
 	elo->calculateScore();
@@ -42,7 +42,7 @@ int main() {
 		
 	
 	system("pause");
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 10; i++) {
 		for (user* index = elo->getFirstUser(); index->next != nullptr; index = index->next) {
 			if (index->score > index->next->score)
 				elo->calculateELO(index, index->next->ELO, 1.0f);
@@ -52,12 +52,10 @@ int main() {
 				elo->calculateELO(index, index->next->ELO, 0.5f);
 		}
 		elo->bubblesort("ELO");
-		elo->calculateScore();
-		cout << "--ELO Changes completed--" << endl;
+		elo->calculateScore();		
 		elo->printUsers();
-		system("pause");
 	}
-	
+	cout << "--ELO Changes completed--" << endl;
 
 	system("pause");
 	return 0;

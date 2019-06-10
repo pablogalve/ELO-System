@@ -10,11 +10,6 @@ void ELOManager::calculateELO(user* myself, float theirELO, float result) {
 	
 	//Change ELO balances to make sure that there are not negative ELOs and to create inflation on users with low ELO
 	if (result == 1) {
-	//	if (myself->ELO < 100) //Bonus to help users grow from low ELOs 
-			//changeELO *= 1.5; //50% bonus
-		//else if (myself->ELO < 200)
-			//changeELO *= 1.2; //20% bonus
-
 		change = true;
 	}
 	else { 
@@ -24,10 +19,6 @@ void ELOManager::calculateELO(user* myself, float theirELO, float result) {
 			myself->ELO = 0;
 			change = false;
 		}
-		//if (adjust <= 100)
-			//changeELO += 20; //Bonus to avoid users approach a very low level
-
-
 	}
 	if(change)
 		myself->ELO += changeELO;
