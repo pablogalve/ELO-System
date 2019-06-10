@@ -9,26 +9,33 @@ int main() {
 	ELOManager* elo = new ELOManager();
 	string myName;
 	float myELO;
+	int rounds;
+	int users;
 
 	cout << "This is my ELO system :)" << endl;
 	cout << "What is your name?";
 	cin >> myName;
 	cout << "What is your ELO?";
 	cin >> myELO;
+	cout << "Total users:";
+	cin >> users;
+	cout << "How many rounds will it have? ";
+	cin >> rounds;
+	
 
 	//Add users
 	elo->addNewUser(myName, myELO);
-	elo->addNewUser("User1", 80);
+	/*elo->addNewUser("User1", 80);
 	elo->addNewUser("User2", 30);
 	elo->addNewUser("User3", 90);
 	elo->addNewUser("User4", 100);
 	elo->addNewUser("User5", 85);
 	elo->addNewUser("User6", 40);
 	elo->addNewUser("User7", 50);
-	elo->addNewUser("User8", 70);
+	elo->addNewUser("User8", 70);*/
 
 	
-	for (int i = 40; i >0; i--) {
+	for (int i = users; i >0; i--) {
 		elo->addNewUser("user", i+rand() %3000);
 		//elo->addNewUser("user", 1500);
 	}
@@ -42,7 +49,7 @@ int main() {
 		
 	cout << "Click any button to start the tournament" << endl; 
 	system("pause");
-	for (int i = 0; i < 500; i++) {
+	for (int i = 0; i < rounds; i++) {
 		//Users competing agains lower users in the ranking
 		for (user* index = elo->getFirstUser(); index->next != nullptr; index = index->next) {
 			if (index->score > index->next->score)
