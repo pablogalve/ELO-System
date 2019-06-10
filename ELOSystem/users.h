@@ -12,7 +12,7 @@ public:
 	string username;
 	float ELO = NULL; //Score of the user
 	float score = NULL; //Result of the game
-	float exp = NULL; //Level of mastery. 1 victory = +3. 1 draw = 2. 1 loss = +1
+	float exp = 0; //Level of mastery. 1 victory = +3. 1 draw = 2. 1 loss = +1
 	user* next = nullptr;
 	user* previous = nullptr;
 };

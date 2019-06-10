@@ -11,6 +11,7 @@ void ELOManager::calculateELO(user* myself, float theirELO, float result) {
 	//Change ELO balances to make sure that there are not negative ELOs and to create inflation on users with low ELO
 	if (result == 1) {
 		change = true;
+		myself->exp += 3;
 	}
 	else { 
 		change = true;
@@ -41,7 +42,7 @@ void ELOManager::calculateScore() {
 			probWinDown=getProbWin(index->ELO, index->previous->ELO);
 		}*/
 
-		index->score = index->ELO / 3 + static_cast <float> (rand()) / (static_cast <float> (200 / (probWinUp+probWinDown)));
+		index->score = index->ELO / 3 + index->exp + static_cast <float> (rand()) / (static_cast <float> (200 / (probWinUp+probWinDown)));
 		//index->score = index->ELO+7;
 
 		//avg = getAvgDown(index);

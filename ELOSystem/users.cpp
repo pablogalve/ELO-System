@@ -2,8 +2,7 @@
 
 ELOManager::ELOManager() {
 	this->first = nullptr;
-	this->last = nullptr;
-
+	this->last = nullptr;	
 }
 
 ELOManager::~ELOManager() {
@@ -71,10 +70,12 @@ void ELOManager::printUsers() {
 			cout << i << "-- Name:[" << index->username << "] ";
 			cout << "ELO:[" << index->ELO << "] ";
 			cout << "Score:[" << index->score << "] ";
+			/*
 			if(index->next!=nullptr)
 				cout << "ProbWin:[" << getProbWin(index->ELO,index->next->ELO) << "] ";
 			else
 				cout << "ProbWin:[" << getProbWin(index->ELO, index->previous->ELO) << "] ";
+			*/
 			cout << endl;
 			i++;
 		}
